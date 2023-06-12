@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="game2048" />
+        <module name="2048" />
       </profile>
     </annotationProcessing>
   </component>
