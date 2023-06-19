@@ -52,7 +52,7 @@ package:
     paths:
       - "target/*.war"
   script:
-    - mvn test
+    - mvn package
 
 
 deploy_test:
