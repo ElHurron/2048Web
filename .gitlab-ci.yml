@@ -2,6 +2,7 @@ stages:
   - build
   - test
   - package
+  - deploy
 
 image: maven:3.8.5-openjdk-17
 
@@ -52,3 +53,20 @@ package:
       - "target/*.war"
   script:
     - mvn test
+
+
+deploy_test:
+  stage: deploy
+  tags:
+    - shell
+  dependencies:
+    - package
+  environment:
+    name: test
+    action: start
+    url: http://localhost:8080/game2048
+  script:
+    - docker rm --force tomcat
+    - docker image rm --force game2048
+    - docker build -t game2048 .
+    - docker run --rm -d --name tomcat -p 8080:8080 game2048
