@@ -1,6 +1,7 @@
 stages:
   - build
   - test
+  - analyze
   - package
   - deploy
 
@@ -9,6 +10,9 @@ image: maven:3.8.5-openjdk-17
 variables:
   maven_packages_cache: ".m2/repository"
   MAVEN_OPTS: "-Dmaven.repo.local=./$maven_packages_cache"
+  sonar_project: "game2048"
+  sonar_url: "http://sonarqube:9000"
+  sonar_login: "97e4334b2e9a7c80cdd705a60be841d53ea17817"
 
 build:
   stage: build
@@ -34,8 +38,28 @@ test:
   cache:
     paths:
       - $maven_packages_cache
+  artifacts:
+    name: $CI_JOB_NAME-$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA
+    expire_in: 1 week
+    paths:
+      - "target/surefire-report/*"
+      - "target/site/jacoco/*"
   script:
     - mvn test
+
+analyze:
+  stage: analyze
+  tags:
+    - docker
+  dependencies:
+    - build
+    - test
+  cache:
+    paths:
+      - $maven_packages_cache
+  script:
+    - mvn sonar:sonar -Dsonar.projectKey=$sonar_project -Dsonar.host.url=$sonar_url -Dsonar.login=$sonar_login -Dsonar.qualitygate.wait=true
+  allow_failure: true
 
 package:
   stage: package
