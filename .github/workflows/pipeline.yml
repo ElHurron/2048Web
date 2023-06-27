@@ -70,11 +70,34 @@
         - name: Upload Artifacts
           uses: actions/upload-artifact@v2
           with:
-            name: test-artifacts
+            name: package-artifacts
             path:
               target/*.war
 
 
+    analyze:
+      name: analyze
+      needs: [ build, test ]
+      runs-on: self-hosted
+      steps:
+        - name: Setup JDK
+          uses: actions/setup-java@v2
+          with:
+            java-version: '19'
+            distribution: 'adopt'
+
+        - name: Download Build-Artifacts
+          uses: actions/download-artifact@v2
+          with:
+            name: artifacts
+
+        - name: Download Test-Artifacts
+          uses: actions/download-artifact@v2
+          with:
+            name: test-artifacts
+
+        - name: test
+          run: mvn sonar:sonar -Dsonar.projectKey=game2048 -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=97e4334b2e9a7c80cdd705a60be841d53ea17817 -Dsonar.qualitygate.wait=true
 
 
 
