@@ -1,0 +1,12 @@
+  on: [push]
+  jobs:
+    build:
+      name: build
+      runs-on: self-hosted
+      steps:
+        - name: Build Project
+          run: mvn compile
+          working-directory: ./src
+
+      
+
