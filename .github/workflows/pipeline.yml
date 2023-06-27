@@ -14,7 +14,7 @@
             distribution: 'adopt'
 
         - name: Build Project
-          run: mvn compile
+          run: mvn clean compile
 
         - name: Upload Artifacts
           uses: actions/upload-artifact@v2
