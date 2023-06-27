@@ -48,6 +48,33 @@
               target/surefire-report
               target/site/jacoco
 
+    package:
+      name: package
+      needs: [build]
+      runs-on: self-hosted
+      steps:
+        - name: Setup JDK
+          uses: actions/setup-java@v2
+          with:
+            java-version: '19'
+            distribution: 'adopt'
+
+        - name: Download Artifacts
+          uses: actions/download-artifact@v2
+          with:
+            name: artifacts
+
+        - name: test
+          run: mvn package
+
+        - name: Upload Artifacts
+          uses: actions/upload-artifact@v2
+          with:
+            name: test-artifacts
+            path:
+              target/*.war
+
+
 
 
 
