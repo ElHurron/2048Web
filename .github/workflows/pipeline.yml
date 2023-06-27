@@ -105,10 +105,5 @@
       needs: [package]
       runs-on: self-hosted
       steps:
-        - name: Deploy Artifacts
-          uses: actions/download-artifact@v2
-          with:
-            name: package-artifacts
-
         - name: Display project structure
           run: ls -R
