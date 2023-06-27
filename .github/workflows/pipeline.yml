@@ -31,9 +31,9 @@
           with:
             java-version: '19'
             distribution: 'adopt'
-            
+
         - name: Download Artifacts
-          uses: action/download-artifact@v2
+          uses: actions/download-artifact@v2
           with:
             name: artifacts
 
