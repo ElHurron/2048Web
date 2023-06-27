@@ -21,6 +21,24 @@
           with:
             name: artifacts
             path: target
+    test:
+      name: test
+      needs: [build]
+      runs-on: self-hosted
+      steps:
+        - name: Setup JDK
+          uses: actions/setup-java@v2
+          with:
+            java-version: '19'
+            distribution: 'adopt'
+            
+        - name: Download Artifacts
+          uses: action/download-artifact@v2
+          with:
+            name: artifacts
+
+        - name: test
+          run: mvn test
 
 
 
