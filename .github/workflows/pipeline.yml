@@ -100,5 +100,15 @@
           run: mvn sonar:sonar -Dsonar.projectKey=game2048 -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=97e4334b2e9a7c80cdd705a60be841d53ea17817 -Dsonar.qualitygate.wait=true
 
 
+    deploy:
+      name: deploy
+      needs: [package]
+      runs-on: self-hosted
+      steps:
+        - name: Deploy Artifacts
+          uses: actions/download-artifact@v2
+          with:
+            name: package-artifacts
 
-
+        - name: Display project structure
+          run: ls -R
