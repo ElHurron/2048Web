@@ -40,6 +40,14 @@
         - name: test
           run: mvn test
 
+        - name: Upload Artifacts
+          uses: actions/upload-artifact@v2
+          with:
+            name: test-artifacts
+            path: |
+              target/surefire-report
+              target/site/jacoco
+
 
 
 
