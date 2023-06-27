@@ -64,7 +64,7 @@
           with:
             name: artifacts
 
-        - name: test
+        - name: package
           run: mvn package
 
         - name: Upload Artifacts
@@ -96,7 +96,7 @@
           with:
             name: test-artifacts
 
-        - name: test
+        - name: sonar-upload
           run: mvn sonar:sonar -Dsonar.projectKey=game2048 -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=97e4334b2e9a7c80cdd705a60be841d53ea17817 -Dsonar.qualitygate.wait=true
 
 
