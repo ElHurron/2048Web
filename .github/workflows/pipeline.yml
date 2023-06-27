@@ -6,7 +6,6 @@
       steps:
         - name: Build Project
           run: mvn compile
-          working-directory: ./src
-
       
+
 
