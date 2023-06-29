@@ -1,20 +1,23 @@
 SPW4 - Exercise 3
 =================
 
-Name: _____________
+Name: Patrick Hackl
 
-Effort in hours: __
+Effort in hours: 4
 
 ## 1. 2048 Web Application and CI/CD Pipeline
 
 ### Task 1.a
 
-<!--- describe your solution here --->
+Done in lesson
 
 ### Task 1.b
 
-<!--- describe your solution here --->
+Done in lesson
 
 ### Task 1.c
 
-<!--- describe your solution here --->
+With the given ReadMe it was easy to setup up a self-hosted
+runner. 
+The other steps consists of finding out how to do it in GitHub Actions. 
+For the deploy a simple move command is used
