@@ -1,4 +1,4 @@
-SPW4 - Exercise 3 Setup Instructions
+docker psSPW4 - Exercise 3 Setup Instructions
 ====================================
 
 ## GitLab
